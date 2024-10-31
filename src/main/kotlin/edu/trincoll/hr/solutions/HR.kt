@@ -1,33 +1,34 @@
 package edu.trincoll.hr.solutions
 
-class HR(private val employees: List<Employee> = emptyList()) {
-    fun hire(employee: Employee): HR =
-        HR(employees + employee)
+class HR(
+    private val employees: List<Employee> = emptyList()
+) {
 
-    fun fire(id: Int): HR =
-        HR(employees.filter { it.id != id })
+    fun hire(employee: Employee): HR {
+        return HR(employees + employee)
+    }
 
-    fun payEmployees(): Double =
-        employees.sumOf { it.pay() }
+    fun fire(id: Int): HR {
+        return HR(employees.filter { it.id != id })
+    }
 
-    fun findEmployee(id: Int): Employee? =
-        employees.find { it.id == id }
+    fun payEmployees(): Double = employees.sumOf { it.pay() }
 
-    fun listEmployees(): List<Employee> =
-        employees.toList()
+    fun findEmployee(id: Int): Employee? = employees.find { it.id == id }
 
-    fun countEmployees(): Int =
-        employees.size
+    fun listEmployees(): List<Employee> = employees.toList()
 
-    fun totalSalaryExpense(): Double =
-        employees.sumOf { it.pay() }
+    fun countEmployees(): Int = employees.size
 
-    fun averageSalary(): Double =
-        if (employees.isNotEmpty()) totalSalaryExpense() / employees.size else 0.0
+    fun totalSalaryExpense(): Double = employees.sumOf { it.pay() }
 
-    fun employeesByType(): Map<String, List<Employee>> =
-        employees.groupBy { it::class.simpleName ?: "Unknown" }
+    fun averageSalary(): Double {
+        return if (employees.isNotEmpty()) totalSalaryExpense() / employees.size else 0.0
+    }
 
-    fun highestPaidEmployee(): Employee? =
-        employees.maxByOrNull { it.pay() }
+    fun employeesByType(): Map<String, List<Employee>> {
+        return employees.groupBy { it::class.simpleName ?: "Unknown" }
+    }
+
+    fun highestPaidEmployee(): Employee? = employees.maxByOrNull { it.pay() }
 }

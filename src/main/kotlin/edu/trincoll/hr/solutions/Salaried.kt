@@ -6,7 +6,9 @@ class Salaried(
     val salary: Double
 ) : Employee(name, id) {
 
-    override fun pay() = salary / 26.0  // paid every two weeks
+    override fun pay(): Double {
+        return salary / 26.0
+    }
 
-    override fun toString() = "Salaried(name=$name, id=$id, salary=$salary)"
+    override fun toString(): String = "Salaried(name=$name, id=$id, salary=$salary)"
 }
